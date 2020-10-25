@@ -20,13 +20,13 @@ class User extends BaseController
 
 		if ($email->send()) 
 		{
-            echo 'Email successfully sent';
-        } 
+			echo 'Email successfully sent';
+		} 
 		else 
 		{
-            $data = $email->printDebugger(['headers']);
-            print_r($data);
-        }
+			$data = $email->printDebugger(['headers']);
+			print_r($data);
+		}
 	}
 
 	function getFileName(){
@@ -37,7 +37,7 @@ class User extends BaseController
 		return view('form');
 	}
 
-		private function setUserSession($user){
+	private function setUserSession($user){
 		$data = [
 			'id' => $user['id'],
 			'firstname' => $user['firstname'],
@@ -75,6 +75,7 @@ class User extends BaseController
 					'email' => $this->request->getVar('email'),
 					'password' => $this->request->getVar('password'),
 				];
+				sendEmail($newData['email'], )
 				$model->save($newData);
 				$session = session();
 				$session->setFlashdata('success', 'Successful Registration');
@@ -100,7 +101,7 @@ class User extends BaseController
 			$rules = [
 				'firstname' => 'required|min_length[3]|max_length[20]',
 				'lastname' => 'required|min_length[3]|max_length[20]',
-				];
+			];
 
 			if($this->request->getPost('password') != ''){
 				$rules['password'] = 'required|min_length[8]|max_length[255]';
@@ -116,10 +117,10 @@ class User extends BaseController
 					'id' => session()->get('id'),
 					'firstname' => $this->request->getPost('firstname'),
 					'lastname' => $this->request->getPost('lastname'),
-					];
-					if($this->request->getPost('password') != ''){
-						$newData['password'] = $this->request->getPost('password');
-					}
+				];
+				if($this->request->getPost('password') != ''){
+					$newData['password'] = $this->request->getPost('password');
+				}
 				$model->save($newData);
 
 				session()->setFlashdata('success', 'Successfuly Updated');

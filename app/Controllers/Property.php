@@ -6,8 +6,7 @@ class Property extends BaseController
 {
 	public function index()
 	{
-		 $model = new PropertyModel();
-		  $data['property'] = $model->getProperty();
+		
 		echo view('template/header', $data);
 		echo view('property/property_list');
 		echo view('template/footer');
@@ -15,7 +14,9 @@ class Property extends BaseController
 
 	
 	public function properties(){
-		echo view('template/header');
+		$model = new PropertyModel();
+		$data['property'] = $model->getProperty();
+		echo view('template/header', $data);
 		echo view('property/property_list');
 		echo view('template/footer');
 	}
