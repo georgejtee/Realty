@@ -29,7 +29,6 @@
             <div class="col-12 col-sm-4">
               <button type="submit" class="btn btn-primary">Login</button>
             </div>
-            <? echo('/register') ?>
             <div class="col-12 col-sm-8 text-right">
               <a href="<?php echo base_url('User/register');?>">Don't have an account yet?</a>
             </div>
