@@ -1,14 +1,66 @@
 <?php namespace App\Controllers;
 
+
+use App\Models\UserModel;
+use App\Models\DepoitsModel;
+
 class User extends BaseController
 {
 	public function index()
 	{
 		echo view('template/header');
+		echo view('data');
 		echo view('template/footer');
 	}
 
-	public function sendEmail(){
+	public function addFunds(){
+		$data = [];
+		helper(['form']);
+		$id = session()->get('id');
+		if ($this->request->getMethod() == 'post') {
+			//let's do the validation here
+			$rules = [
+				'amount' => 'required',
+			];
+
+			if (! $this->validate($rules)) {
+				$data['validation'] = $this->validator;
+			}else{
+				$model = new UserModel();
+				$deposit = new DepoitsModel();
+				$session = session();
+
+				$model = new UserModel();
+				$user = $model->find($id);
+				
+				$user['amount' ] =  floatval($user['amount']) + floatval($this->request->getVar('amount')) ;
+				$model->update($id, $user);
+				$data = [
+					'userId' =>session()->get('id'),
+					'amount' => $this->request->getVar('amount')
+				];
+				$deposit->save($data);
+				$session->setFlashdata('success', 'Successfully Added Funds');
+
+			}
+		}
+
+		echo view('template/header');
+		echo view('user/addFunds');
+		echo view('template/footer');
+	}
+
+	public function depositHistory(){
+		$model = new DepoitsModel();
+		$data['deposits'] = $model->where('userId', session()->get('id'))->findAll();
+
+		echo view('template/header', $data);
+		echo view('user/deposit_history');
+		echo view('template/footer');
+	}
+
+	public function sendEmail()
+	{
 
 
 		$email = \Config\Services::email();
@@ -75,7 +127,8 @@ class User extends BaseController
 					'email' => $this->request->getVar('email'),
 					'password' => $this->request->getVar('password'),
 				];
-				sendEmail($newData['email'], )
+
+				$model = new UserModel();
 				$model->save($newData);
 				$session = session();
 				$session->setFlashdata('success', 'Successful Registration');
@@ -85,9 +138,50 @@ class User extends BaseController
 		}
 
 
-		echo view('templates/header', $data);
-		echo view('register');
-		echo view('templates/footer');
+		echo view('template/header', $data);
+		echo view('user/register');
+		echo view('template/footer');
+	}
+
+	public function login()
+	{
+		$data = [];
+		helper(['form']);
+		helper(['url']);
+
+
+		if ($this->request->getMethod() == 'post') {
+			//let's do the validation here
+			$rules = [
+				'email' => 'required|min_length[6]|max_length[50]|valid_email',
+				'password' => 'required|min_length[8]|max_length[255]|validateUser[email,password]',
+			];
+
+			$errors = [
+				'password' => [
+					'validateUser' => 'Email or Password don\'t match'
+				]
+			];
+
+			if (! $this->validate($rules, $errors)) {
+				$data['validation'] = $this->validator;
+			}else{
+				$model = new UserModel();
+
+				$user = $model->where('email', $this->request->getVar('email'))
+				->first();
+
+				$this->setUserSession($user);
+				$session = session();
+				$session->setFlashdata('success', 'Successful Registration');
+				return redirect()->to(base_url('Property/index'));
+
+			}
+		}
+
+		echo view('template/header', $data);
+		echo view('user/login');
+		echo view('template/footer');
 	}
 
 	public function profile(){
@@ -124,24 +218,19 @@ class User extends BaseController
 				$model->save($newData);
 
 				session()->setFlashdata('success', 'Successfuly Updated');
-				return redirect()->to('/profile');
+				return redirect()->to('User/profile');
 
 			}
 		}
 
-		$data['user'] = $model->where('id', session()->get('id'))->first();
-		echo view('templates/header', $data);
-		echo view('profile');
-		echo view('templates/footer');
+		$data['user'] = $model->where('id', 2)->first();
+		echo view('template/header', $data);
+		echo view('user/profile');
+		echo view('template/footer');
 	}
 
 	public function logout(){
 		session()->destroy();
-		return redirect()->to('/');
+		return redirect()->to(base_url('User/login'));
 	}
-
-	function addFunds(){
-		
-	}
-
 }

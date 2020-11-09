@@ -89,43 +89,6 @@ class Home extends BaseController
 		return view('form');
 	}
 
-	function  addData(){
-		$data = [];
-		helper(['form']);
-
-		if ($this->request->getMethod() == 'post') {
-			//let's do the validation here
-			$fileNames = [];
-			$files = $this->request->getFileMultiple('photo');
-			foreach ($files as $file) {
-				$fileName = $file->getRandomName();
-				array_push($fileNames,$fileName);
-				$file->move('./public/upload/'.$session['User'], $fileName);
-			}
-			$newData = [
-
-				'developmentTime'    => $this->request->getVar('firstname'),
-				'description' => $this->request->getVar('lastname'),
-				'location' => $this->request->getVar('email'),
-				'shortDescription' => $this->request->getVar('password'),
-				'imagepath1' => $fileNames[0],
-				'imagepath2' => $fileNames[1],
-				'imagepath3' => $fileNames[2],
-				'investmentRequired' => $this->request->getVar('investmentRequired'),
-				'dateUploaded' => new DateTime(),
-
-
-			];
-			$model = new PropertyModel();
-			$model->saveProperty($newData);
-			$session = session();
-			$session->setFlashdata('success', 'Successful Registration');
-			return redirect()->to('/addData');
-
-		}
-		echo view('template/header', $data);
-		echo view('data');
-		echo view('template/footer');
-	}
+	
 
 }

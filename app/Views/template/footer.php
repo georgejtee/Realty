@@ -1,3 +1,12 @@
+
+<?php if (session()->get('success')): ?>
+<div class="alert alert-success alert-dismissible" role="alert">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<strong> <?= session()->get('success') ?></strong>
+</div>
+
+<?php endif; ?>
+
 </main>
 <footer>
 	<!-- Footer Start-->
@@ -8,7 +17,7 @@
 					<div class="single-footer-caption mb-50">
 						<!-- logo -->
 						<div class="footer-logo">
-							<a href="index.html"><img src="/assets/img/logo/realty-crowd-logo-transparent.png" alt="Realty Crowd Peer to Peer Crowd Fundning"></a>
+							<a href="index.html"><img src="<?= base_url('/assets/img/logo/realty-crowd-logo-transparent.png')?>" alt="Realty Crowd Peer to Peer Crowd Fundning"></a>
 						</div>
 						<div class="single-footer-caption mb-30">
 							<div class="footer-tittle">
@@ -107,43 +116,7 @@
 	<!-- JS here -->
 
 	<!-- All JS Custom Plugins Link Here here -->
-	<script src="<?= base_url('public/assets/js/vendor/modernizr-3.5.0.min.js') ?>"></script>
-	<!-- Jquery, Popper, Bootstrap -->
-	<script src="<?= base_url('public/assets/js/vendor/jquery-1.12.4.min.js') ?>"></script>
-	<script src="<?= base_url('public/assets/js/popper.min.js') ?>"></script>
-	<script src="<?= base_url('public/assets/js/bootstrap.min.js') ?>"></script>
-	<!-- Jquery Mobile Menu -->
-	<script src="<?= base_url('public/assets/js/jquery.slicknav.min.js') ?>"></script>
 
-	<!-- Jquery Slick , Owl-Carousel Plugins -->
-	<script src="<?= base_url('public/assets/js/owl.carousel.min.js') ?>"></script>
-	<script src="<?= base_url('public/assets/js/slick.min.js') ?>"></script>
-
-	<!-- One Page, Animated-HeadLin -->
-	<script src="<?= base_url('public/assets/js/wow.min.js') ?>"></script>
-	<script src="<?= base_url('public/assets/js/animated.headline.js') ?>"></script>
-	<script src="<?= base_url('public/assets/js/jquery.magnific-popup.js') ?>"></script>
-
-	<!-- Scrollup, nice-select, sticky -->
-	<script src="<?= base_url('public/assets/js/jquery.scrollUp.min.js') ?>"></script>
-	<script src="<?= base_url('public/assets/js/jquery.nice-select.min.js') ?>"></script>
-	<script src="<?= base_url('public/assets/js/jquery.sticky.js') ?>"></script>
-
-	<!-- counter , waypoint -->
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-	<script src="<?= base_url('public/assets/js/jquery.counterup.min.js') ?>"></script>
-
-	<!-- counter -->
-	<script src="<?= base_url('public/assets/js/contact.js') ?>"></script>
-	<script src="<?= base_url('public/assets/js/jquery.form.js') ?>"></script>
-	<script src="<?= base_url('public/assets/js/jquery.validate.min.js') ?>"></script>
-	<script src="<?= base_url('public/assets/js/mail-script.js') ?>"></script>
-	<script src="<?= base_url('public/assets/js/jquery.ajaxchimp.min.js') ?>"></script>
-
-	<!-- Jquery Plugins, main Jquery -->
-	<script src="<?= base_url('public/assets/js/plugins.js') ?>"></script>
-	<script src="<?= base_url('public/assets/js/main.js') ?>"></script>
 
 </body>
-
 </html>

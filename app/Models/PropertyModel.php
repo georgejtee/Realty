@@ -3,14 +3,22 @@ use CodeIgniter\Model;
 
 class PropertyModel extends Model
 {
-    protected $table = 'Property';
+    protected $table = 'property';
+    protected $primaryKey = 'propertId ';
+
+    protected $allowedFields = ['description', 'location', 'investmentReturnPercentage', 'shortDescription', 'developmentTime', 'imagepath1', 'imagepath2', 'imagepath3', 'investmentRequired', 'verified', 'verifiedBy'];
+
+
+    protected $useTimestamps = false;
+    protected $createdField  = 'dateUploaded';
     
     public function getProperty($id = false)
     {
         if($id === false){
-            return $this->findAll();
+            return $this->where('verified', 1)->findAll();
         }else{
-            return $this->getWhere(['Propertyid' => $id]);
+            return $this->getWhere(['propertId' => $id])
+            ->first();
         }   
     }
 

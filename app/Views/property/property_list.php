@@ -1,8 +1,9 @@
 <div class="container"><h3>Available Properties</h3>
-
+<?php print_r(session()->get('id')); ?>
 	<hr>
 	<?php foreach($property as $row):?>
 		<?php $percentage = $row['pledgedAmount']/($row['investmentRequired']>0 ? $row['investmentRequired'] : 1)*100; ?>
+
 		<div class="row">
 			<div class="col-md-4">
 				<img src="<?php echo($row['imagepath1']); ?>" class="img-rounded img-responsive">
@@ -48,7 +49,10 @@
 					</div>
 				</div>
 
-				<div class="col-md-12"><a href="<?php site_url('Property/property')?>".<?php $row['propertId'] ;?>><button class="btn btn-sm btn-primary">View More details</button></a></div>
+				
+				<?php $url =  "Property/property/".$row['propertId']?>
+
+				<div class="col-md-12"><button class="btn btn-sm btn-primary"><a href="<?php echo(base_url($url)) ; ?>">View More details</a></button></div>
 
 			</div>
 

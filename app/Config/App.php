@@ -21,7 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'http://localhost:1023/framework/';
+	public $baseURL = 'http://localhost:1023/framework/public/';
 
 	/*
 	|--------------------------------------------------------------------------

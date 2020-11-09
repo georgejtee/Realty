@@ -1,80 +1,87 @@
-<style type="text/css">
-	
+<div class="container">
+	<form action="<?php echo base_url("/Property/addProperty");?>" method="post" enctype="multipart/form-data">
 
-</style>
-<div class="col-sm-6">
-	
-	<div class="form-group">
-		<label for="investment">Investment Required</label>
-		<input type="email" class="form-control" id="investment" aria-describedby="emailHelp" placeholder="Enter Investment">
-	</div>
+		<div class="row">
 
-	<div class="form-group">
-		<label for="investment">Investment Period</label>
-		<select class="form-control" id="exampleFormControlSelect1">
-			<option>6 months</option>
-			<option>12 months</option>
-			<option>18 months</option>
-			<option>24 months</option>
-		</select>
-	</div>
+			<div class="col-sm-6">
 
-	<div class="form-group">
-		<label for="investment">Investment Required</label>
-		<input type="email" class="form-control" id="investment" aria-describedby="emailHelp" placeholder="Enter Investment">
-	</div>
+				<div class="form-group">
+					<label for="investmentRequired">Investment Required</label>
+					<input type="number" class="form-control" id="investmentRequired" name="investmentRequired" aria-describedby="investmentRequired" placeholder="Enter Investment">
+				</div>
 
-	
+				<div class="form-group">
+					<label>Period</label>
+					<select class="form-control" name="">
+						<option value="6">6 months</option>
+						<option value="12">12 months</option>
+						<option value="18">18 months</option>
+						<option value="24">24 months</option>
+					</select>
+				</div>
 
-	<div class="form-group">
-		<label for="investment">Short Description</label>
-		<textarea type="email" class="form-control" id="investment" aria-describedby="emailHelp" placeholder="short description 300 words"></textarea> 
-	</div>
-	<div class="form-group">
-		<label for="investment">Investment Return Percentage</label>
-		<input type="email" class="form-control" id="investment" aria-describedby="emailHelp" placeholder="Enter Investment Return Percentage">
-	</div>
+				<div class="form-group">
+					<label for="investment">Investment Required</label>
+					<input type="input" class="form-control" id="investment" aria-describedby="emailHelp" placeholder="Enter Investment">
+				</div>
 
-</div>
 
-<div class="col-sm-6">
-	
-	<div class="form-group">
-		<label for="investment">Location</label>
-		<input type="email" class="form-control" id="investment" aria-describedby="emailHelp" placeholder="Enter Location">
-	</div>
 
-	<div class="form-group">
-		<label for="investment">Development Time</label>
-		<input type="email" class="form-control" id="investment" aria-describedby="emailHelp" placeholder="Enter Investment">
-	</div>
+				<div class="form-group">
+					<label for="shortDescription">Short Description</label>
+					<textarea type="text" class="form-control" id="shortDescription" name="shortDescription"aria-describedby="emailHelp" placeholder="short description 300 words"></textarea> 
+				</div>
 
-	<div class="form-group">
-		<label for="investment">Investment Required</label>
-		<input type="email" class="form-control" id="investment" aria-describedby="emailHelp" placeholder="Enter Investment">
-	</div>
+				<div class="form-group">
+					<label for="investment">Investment Return Percentage</label>
+					<input type="input" class="form-control" id="investmentReturnPercentage" name="" aria-describedby="emailHelp" name="investmentReturnPercentage" placeholder="Enter Investment Return Percentage">
+				</div>
 
-	<div class="form-group">
-		<label for="investment">Description</label>
-		<textarea type="email" class="form-control" id="investment" aria-describedby="emailHelp" placeholder="Enter Investment"></textarea> 
-	</div>
+			</div>
 
-	<div class="form-group">
-		<label for="investment">Property Images</label>
-		<fieldset class="form-group">
-			<a href="javascript:void(0)" onclick="$('#pro-image').click()">Upload Image</a>
-			<input type="file" id="pro-image" name="pro-image" style="display: none;" class="form-control" multiple>
-		</fieldset>
-		<div class="preview-images-zone">
+			<div class="col-sm-6">
+
+				<div class="form-group">
+					<label for="location">Location</label>
+					<input type="input" class="form-control" id="location" name="location" aria-describedby="emailHelp" placeholder="Enter Location">
+				</div>
+
+				<div class="form-group">
+					<label for="developmentTime">Development Time</label>
+					<input type="input" class="form-control" id="developmentTime" name="developmentTime" aria-describedby="emailHelp" placeholder="Enter Investment">
+				</div>
+
+				<div class="form-group">
+					<label for="investment">Investment Required</label>
+					<input type="input" class="form-control" id="investment" aria-describedby="emailHelp" placeholder="Enter Investment">
+				</div>
+
+				<div class="form-group">
+					<label for="description">Description</label>
+					<textarea type="text" class="form-control" id="investment" name="description" placeholder="Enter Description"></textarea> 
+				</div>
+
+				<div class="form-group">
+					<label for="investment">Property Images</label>
+					<input type="file" name="photo" class="form-control" multiple="true">
+				</div>
+
+			</div>
+			<div class="divider">
+
+			</div>
 
 		</div>
-	</div>
 
+		<div class="row">
+			<div class="col-12 col-sm-4">
+				<button type="submit" class="btn btn-primary">Save Property</button>
+			</div>
+		</div>
+	</form>
 </div>
-<div class="divider">
-	
-</div>
-
+<br>
+<br>
 <script type="text/javascript">
 
 	$(document).ready(function() {
