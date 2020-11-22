@@ -1,6 +1,6 @@
 
 <?php if (session()->get('success')): ?>
-<div class="alert alert-success alert-dismissible" role="alert">
+<div class="alert alert-success alert-dismissible" role="alert" id="alerts">
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	<strong> <?= session()->get('success') ?></strong>
 </div>
@@ -119,4 +119,12 @@
 
 
 </body>
+<script type="text/javascript">
+	function myFunction() {
+   $('#alerts').fadeIn(1000);
+   setTimeout(function() { 
+       $('#alerts').fadeOut(1000); 
+   }, 5000);
+}
+</script>
 </html>

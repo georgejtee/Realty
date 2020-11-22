@@ -1,4 +1,4 @@
-<div class="container"><h3>User Properties</h3>
+<div class="container"><h3>My Properties</h3>
 	<?php $amount = 0 ?>
 	<div class="row">
 		<div class="table-responsive">
@@ -6,17 +6,19 @@
 				<thead>
 					<tr>
 						<th>Property</th>
-						<th>Amount</th>
-						<th>Date</th>
+						<th>Amount Required</th>
+						<th>Amount Invested</th>
+						<th>Date Created</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php foreach ($properties as $item):?>
-						<?php $amount +=  $item['amount']; ?>
+						<?php $amount +=  $item['investmentRequired']; ?>
 						<tr>
 							<td><?= $item['propertyId'] ?></td>
-							<td><?= $item['amount'] ?></td>
+							<td><?= $item['investmentRequired'] ?></td>
+							<td><?= $item['pledgedAmount'] ?></td>
 							<td><?= $item['created_at'] ?></td>
 
 							<td class="text-right">
@@ -26,7 +28,7 @@
 						</tr>
 					<?php endforeach;?>
 					<tr>
-						<td><i>Total Investments</i></td>
+						<td><i>Properties Total</i></td>
 						<td class="text-right" ><b><?php echo($amount); ?></b></td>
 
 					</tr>

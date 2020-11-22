@@ -1,7 +1,6 @@
 
-<div class="row col-sm-12 container">
+<div class="row container">
 
-	<?php $investmentUrl =  "Property/invest/" ;?>
 	<div class="col-md-4">
 		
 		<div class="row">
@@ -16,11 +15,11 @@
 				<img src="<?php base_url('xxx.jpg'); ?>" class="img-rounded img-responsive">
 			</div>
 			<div class="col-md-4">
-				<img src="<?php echo($property['imagepath1']); ?>" class="img-rounded img-responsive">
+				<img src="<?php echo(''); ?>" class="img-rounded img-responsive">
 			</div>
 			
 		</div>
-			<form action="<?php base_url('Property/invest'); ?>" method="post">
+			<form action="<?php echo(base_url('Property/invest')); ?>" method="post">
 
 				<div class="form-group">
 					<label>
@@ -29,7 +28,7 @@
 					<input class="form-control" type="number" name="amount">
 
 				</div>
-				<input type="hidden" name="propertId" value="<?php echo($property['propertId']) ?>">
+				<input type="hidden" name="propertyId" value="<?php echo($property['propertyId']) ?>">
 
 
 				<div class="form-group">
@@ -47,7 +46,7 @@
 
 			<div >
 				<h2>R <?php echo($property['investmentRequired']); ?> Package Price.</h2>
-				<h3>Development Project - <?php echo($property['propertId']); ?></h3>
+				<h3>Development Project - <?php echo($property['propertyId']); ?></h3>
 
 				<span class="col-md-12 bold">
 					<b><?php echo($property['investmentReturnPercentage']); ?> Per Annum Return Paid Monthly</b>

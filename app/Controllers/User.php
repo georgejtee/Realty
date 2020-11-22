@@ -6,13 +6,6 @@ use App\Models\DepoitsModel;
 
 class User extends BaseController
 {
-	public function index()
-	{
-		echo view('template/header');
-		echo view('data');
-		echo view('template/footer');
-	}
-
 	public function addFunds(){
 		$data = [];
 		helper(['form']);
@@ -59,26 +52,19 @@ class User extends BaseController
 		echo view('template/footer');
 	}
 
-	public function sendEmail()
+	public function sendEmail($emailAddress, $subject, $message)
 	{
 
 
 		$email = \Config\Services::email();
 
-		$email->setTo('georgejanasi@gmail.com');
+		$email->setTo($emailAddress);
 
-		$email->setSubject('Email Test');
-		$email->setMessage('Testing the email class.');
+		$email->setSubject($subject);
+		$email->setMessage($messag);
 
-		if ($email->send()) 
-		{
-			echo 'Email successfully sent';
-		} 
-		else 
-		{
-			$data = $email->printDebugger(['headers']);
-			print_r($data);
-		}
+		return $email->send(); 
+		
 	}
 
 	function getFileName(){
@@ -132,7 +118,7 @@ class User extends BaseController
 				$model->save($newData);
 				$session = session();
 				$session->setFlashdata('success', 'Successful Registration');
-				return redirect()->to('/');
+				return redirect()->to( base_url('User/login'));
 
 			}
 		}
@@ -154,7 +140,7 @@ class User extends BaseController
 			//let's do the validation here
 			$rules = [
 				'email' => 'required|min_length[6]|max_length[50]|valid_email',
-				'password' => 'required|min_length[8]|max_length[255]|validateUser[email,password]',
+				'password' => 'required|validateUser[email,password]',
 			];
 
 			$errors = [
@@ -175,7 +161,6 @@ class User extends BaseController
 				$session = session();
 				$session->setFlashdata('success', 'Successful Registration');
 				return redirect()->to(base_url('Property/index'));
-
 			}
 		}
 
@@ -211,6 +196,8 @@ class User extends BaseController
 					'id' => session()->get('id'),
 					'firstname' => $this->request->getPost('firstname'),
 					'lastname' => $this->request->getPost('lastname'),
+					'phone' => $this->request->getPost('phone'),
+					'address' => $this->request->getPost('address')
 				];
 				if($this->request->getPost('password') != ''){
 					$newData['password'] = $this->request->getPost('password');
@@ -218,12 +205,12 @@ class User extends BaseController
 				$model->save($newData);
 
 				session()->setFlashdata('success', 'Successfuly Updated');
-				return redirect()->to('User/profile');
+				return redirect()->to(base_url('User/profile'));
 
 			}
 		}
 
-		$data['user'] = $model->where('id', 2)->first();
+		$data['user'] = $model->where('id', session()->get('id'))->first();
 		echo view('template/header', $data);
 		echo view('user/profile');
 		echo view('template/footer');

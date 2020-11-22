@@ -76,7 +76,16 @@ class Property extends BaseController
 
 	}
 
-	function saveProperty(){
+	public function createdProperties(){
+		$model = new PropertyModel();
+		$data['properties'] = $model->where('createdBy', session()->get('id'))->findAll();
+
+		echo view('template/header', $data);
+		echo view('property/my_properties');
+		echo view('template/footer');
+	}
+
+	public function saveProperty(){
 
 		$data = [];
 		helper(['form']);
@@ -85,7 +94,7 @@ class Property extends BaseController
 		$model->saveProperty($data);
 	}
 
-	function  addData(){
+	public function  addData(){
 		$data = [];
 		helper(['form']);
 
@@ -136,7 +145,7 @@ class Property extends BaseController
 				'propertyId' => $this->request->getVar('propertyId'),
 				'amount' => $this->request->getVar('amount'),
 			];
-
+			print_r($newData);
 			$model = new UserProperiesModel();
 			$model->insert($newData);
 			$session = session();
@@ -144,6 +153,7 @@ class Property extends BaseController
 			return redirect()->to('Property/properties');
 
 		}
+		echo("xxx");
 		echo view('template/header', $data);
 		echo view('data');
 		echo view('template/footer');

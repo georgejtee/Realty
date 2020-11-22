@@ -4,7 +4,7 @@ use CodeIgniter\Model;
 class PropertyModel extends Model
 {
     protected $table = 'property';
-    protected $primaryKey = 'propertId ';
+    protected $primaryKey = 'propertyId';
 
     protected $allowedFields = ['description', 'location', 'investmentReturnPercentage', 'shortDescription', 'developmentTime', 'imagepath1', 'imagepath2', 'imagepath3', 'investmentRequired', 'verified', 'verifiedBy'];
 
@@ -17,7 +17,7 @@ class PropertyModel extends Model
         if($id === false){
             return $this->where('verified', 1)->findAll();
         }else{
-            return $this->getWhere(['propertId' => $id])
+            return $this->getWhere(['propertyId' => $id])
             ->first();
         }   
     }

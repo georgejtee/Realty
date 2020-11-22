@@ -1,25 +1,25 @@
 (function ($)
   { "use strict"
   
-/* 1. Proloder */
-    $(window).on('load', function () {
-      $('#preloader-active').delay(450).fadeOut('slow');
-      $('body').delay(450).css({
-        'overflow': 'visible'
-      });
+  /* 1. Proloder */
+  $(window).on('load', function () {
+    $('#preloader-active').delay(450).fadeOut('slow');
+    $('body').delay(450).css({
+      'overflow': 'visible'
     });
+  });
 
 
-/* 2. slick Nav */
+  /* 2. slick Nav */
 // mobile_menu
-    var menu = $('ul#navigation');
-    if(menu.length){
-      menu.slicknav({
-        prependTo: ".mobile_menu",
-        closedSymbol: '+',
-        openedSymbol:'-'
-      });
-    };
+var menu = $('ul#navigation');
+if(menu.length){
+  menu.slicknav({
+    prependTo: ".mobile_menu",
+    closedSymbol: '+',
+    openedSymbol:'-'
+  });
+};
 
 
 /* 3. MainSlider-1 */
@@ -43,29 +43,29 @@
         prevArrow: '<button type="button" class="slick-prev"><img src="img/hero_thumb/arrow-left.png" alt=""><img class="secondary-img" src="img/hero_thumb/left-white.png" alt=""></button>',
         nextArrow: '<button type="button" class="slick-next"><img src="img/hero_thumb/arrow-right.png" alt=""><img class="secondary-img" src="img/hero_thumb/right-white.png" alt=""></button>',
         responsive: [{
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              infinite: true,
-            }
-          },
-          {
-            breakpoint: 991,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              arrows: false
-            }
-          },
-          {
-            breakpoint: 767,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              arrows: false
-            }
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
           }
+        },
+        {
+          breakpoint: 991,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false
+          }
+        },
+        {
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false
+          }
+        }
         ]
       });
 
@@ -87,10 +87,10 @@
     }
     mainSlider();
 
-/* 4. Testimonial Active*/
-  var testimonial = $('.h1-testimonial-active');
+    /* 4. Testimonial Active*/
+    var testimonial = $('.h1-testimonial-active');
     if(testimonial.length){
-    testimonial.slick({
+      testimonial.slick({
         dots: true,
         infinite: true,
         speed: 1000,
@@ -101,37 +101,37 @@
         slidesToShow: 1,
         slidesToScroll: 1,
         responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              infinite: true,
-              arrow:false
-            }
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              arrows:false
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              arrows:false,
-            }
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            arrow:false
           }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows:false
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows:false,
+          }
+        }
         ]
       });
     }
 
 
-/* 5. Gallery Active */
+    /* 5. Gallery Active */
     var client_list = $('.gallery-active');
     if(client_list.length){
       client_list.owlCarousel({
@@ -160,13 +160,13 @@
     }
 
 
-/* 6. Nice Selectorp  */
-  var nice_Select = $('select');
+    /* 6. Nice Selectorp  */
+    var nice_Select = $('select');
     if(nice_Select.length){
       nice_Select.niceSelect();
     }
 
-/* 7.  Custom Sticky Menu  */
+    /* 7.  Custom Sticky Menu  */
     $(window).on('scroll', function () {
       var scroll = $(window).scrollTop();
       if (scroll < 245) {
@@ -179,16 +179,19 @@
     $(window).on('scroll', function () {
       var scroll = $(window).scrollTop();
       if (scroll < 245) {
-          $(".header-sticky").removeClass("sticky");
+        $(".header-sticky").removeClass("sticky");
       } else {
-          $(".header-sticky").addClass("sticky");
+        $(".header-sticky").addClass("sticky");
       }
     });
 
 
 
-/* 8. sildeBar scroll */
-    $.scrollUp({
+    /* 8. sildeBar scroll */
+
+    $(document).ready(function(){
+
+      $.scrollUp({
       scrollName: 'scrollUp', // Element ID
       topDistance: '300', // Distance from top before showing element (px)
       topSpeed: 300, // Speed back to top (ms)
@@ -199,51 +202,54 @@
       activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
     });
 
+    });
+    
 
-/* 9. data-background */
+
+    /* 9. data-background */
     $("[data-background]").each(function () {
       $(this).css("background-image", "url(" + $(this).attr("data-background") + ")")
-      });
+    });
 
 
-/* 10. WOW active */
+    /* 10. WOW active */
     new WOW().init();
 
-/* 11. Datepicker */
+    /* 11. Datepicker */
 
 
     
 // 11. ---- Mailchimp js --------//  
-    function mailChimp() {
-      $('#mc_embed_signup').find('form').ajaxChimp();
-    }
-    mailChimp();
+function mailChimp() {
+  $('#mc_embed_signup').find('form').ajaxChimp();
+}
+mailChimp();
 
 
 
 // 12 Pop Up Img
-    var popUp = $('.single_gallery_part, .img-pop-up');
-      if(popUp.length){
-        popUp.magnificPopup({
-          type: 'image',
-          gallery:{
-            enabled:true
-          }
-        });
-      }
+var popUp = $('.single_gallery_part, .img-pop-up');
+if(popUp.length){
+  popUp.magnificPopup({
+    type: 'image',
+    gallery:{
+      enabled:true
+    }
+  });
+}
 
 
 /* 13. Popup video */
-    $('.popup-video').magnificPopup({
-      type: 'iframe'
-    });
+$('.popup-video').magnificPopup({
+  type: 'iframe'
+});
 
 
 /* 13. counterUp*/
-    $('.counter').counterUp({
-      delay: 10,
-      time: 3000
-    });
+$('.counter').counterUp({
+  delay: 10,
+  time: 3000
+});
 
-  
+
 })(jQuery);

@@ -29,6 +29,11 @@
       </div>
     </form>
 
+    <?php if (session()->get('success')): ?>
+    <div class="alert alert-success alert-dismissible" role="alert">
+      <?= session()->get('success') ?>
+    </div>
+  <?php endif; ?>
 </div>
 </div>
 </div>

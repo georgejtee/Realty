@@ -28,15 +28,15 @@ class Home extends BaseController
 		echo view('templates/footer');
 	}
 
-	public function sendEmail(){
+	public function sendEmail($email, $subject, $message){
 
 
 		$email = \Config\Services::email();
 
-		$email->setTo('georgejanasi@gmail.com');
+		$email->setTo($email);
 
-		$email->setSubject('Email Test');
-		$email->setMessage('Testing the email class.');
+		$email->setSubject($subject);
+		$email->setMessage($message);
 
 		if ($email->send()) 
 		{
@@ -45,14 +45,9 @@ class Home extends BaseController
 		else 
 		{
 			$data = $email->printDebugger(['headers']);
-			print_r($data);
-			print_r($email);
 		}
 	}
 
-	function getFileName(){
-		$file = new \CodeIgniter\Files\File($path);
-	}
 
 	function form(){
 

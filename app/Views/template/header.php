@@ -24,9 +24,10 @@
   <link rel="stylesheet" href="<?= base_url('assets/css/nice-select.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.22/af-2.3.5/b-1.6.5/r-2.2.6/datatables.min.css"/>
+
+  <script src="<?= base_url('assets/js/vendor/jquery-1.12.4.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/vendor/modernizr-3.5.0.min.js') ?>"></script>
   <!-- Jquery, Popper, Bootstrap -->
-  <script src="<?= base_url('assets/js/vendor/jquery-1.12.4.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/popper.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
   <!-- Jquery Mobile Menu -->
@@ -42,7 +43,7 @@
   <script src="<?= base_url('assets/js/jquery.magnific-popup.js') ?>"></script>
 
   <!-- Scrollup, nice-select, sticky -->
-  <script src="<?= base_url('assets/js/jquery.scrollUp.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/jquery.scrollUp.js') ?>"></script>
   <script src="<?= base_url('assets/js/jquery.nice-select.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/jquery.sticky.js') ?>"></script>
 
@@ -65,9 +66,6 @@
 
 
 <body>
-
-
-
   <header>
     <!-- Header Start -->
     <div class="header-area header-sticky">
@@ -137,8 +135,9 @@
               <?php if (session()->get('id')): ?>
               <li><a href="#">Properties</a>
                 <ul class="submenu">
+                  <li><a href="<?php echo (base_url('Property/addProperty')); ?>">Add Property</a></li>
                   <li><a href="<?php echo (base_url('Property/index')); ?>">Property List</a></li>
-                  <li><a href="<?php echo(base_url('Property/userProperties')) ?>">My Properties</a></li>
+                  <li><a href="<?php echo(base_url('Property/createdProperties')) ?>">Created Properties</a></li>
                 </ul>
               </li>
 
@@ -146,7 +145,7 @@
                 <ul class="submenu">
                   <li><a href="<?php echo(base_url('User/addFunds')) ?>">Add Funds</a></li>
                   <li><a href="<?php echo(base_url('User/depositHistory')) ?>">Deposit History</a></li>
-                  <li><a href="<?php echo(base_url('Property/userProperties')) ?>">My Properties</a></li>
+                  <li><a href="<?php echo(base_url('Property/userProperties')) ?>">Invested Properties</a></li>
                   <li><a href="<?php echo(base_url('User/profile')) ?>">Profile</a></li>
 
                 </ul>

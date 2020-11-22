@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 col-sm8- offset-sm-2 col-md-6 offset-md-3 mt-5 pt-3 pb-3 bg-white from-wrapper">
+    <div class="">
       <div class="container">
         <h3><?= $user['firstname'].' '.$user['lastname'] ?></h3>
         <hr>
@@ -9,7 +9,7 @@
             <?= session()->get('success') ?>
           </div>
         <?php endif; ?>
-        <form class="" action="/profile" method="post">
+        <form class="" action="<?php echo base_url('User/profile');?>" method="post">
           <div class="row">
             <div class="col-12 col-sm-6">
               <div class="form-group">
@@ -26,7 +26,19 @@
             <div class="col-12">
               <div class="form-group">
                <label for="email">Email address</label>
-               <input type="text" class="form-control" readonly id="email" value="<?= $user['email'] ?>">
+               <input type="text" class="form-control" name="email" readonly id="email" value="<?= $user['email'] ?>">
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <div class="form-group">
+               <label for="email">Physical Address</label>
+               <textarea type="text" class="form-control"  name="address" id="address" value="<?= $user['address'] ?>"></textarea> 
+              </div>
+            </div>
+              <div class="col-12 col-sm-6">
+              <div class="form-group">
+               <label for="email">Phone Number</label>
+               <input type="text" class="form-control" name="phone" id="phone" value="<?= $user['phone'] ?>">
               </div>
             </div>
             <div class="col-12 col-sm-6">

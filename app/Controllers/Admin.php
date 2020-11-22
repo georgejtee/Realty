@@ -76,10 +76,12 @@ class Admin extends BaseController
 	function unverifiedProperties(){
 		$model = new PropertyModel();
 
-		$properties = $model->where('verified', 0)
+		$data['properties'] = $model->where('verified', 0)
 		->findAll();
-
-		print_r($properties);
+			
+		echo view('template/header', $data);
+		echo view('admin/unverified_properties');
+		echo view('template/footer');
 	}
 
 }
