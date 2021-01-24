@@ -2,6 +2,7 @@
 
 use App\Models\UserModel;
 use App\Models\PropertyModel;
+use App\Models\InvestmentGroupsModel;
 
 class Admin extends BaseController
 {
@@ -39,21 +40,20 @@ class Admin extends BaseController
 
 	}
 
-	function edit($Id){
+	public function edit($Id){
 		$model = new UserModel();
 		$user = $model->find($Id);
-		print_r($user);
+		
 	}
 
-	function delete($id){
+	public function delete($id){
 
 		$model = new UserModel();
 		
 		$user = $model->delete($id);
-		print_r($user);
 	}
 
-	function properties(){
+	public function properties(){
 
 		$model = new PropertyModel();
 
@@ -73,15 +73,39 @@ class Admin extends BaseController
 		echo view('template/footer');
 	}
 
-	function unverifiedProperties(){
+	public function unverifiedProperties(){
 		$model = new PropertyModel();
 
 		$data['properties'] = $model->where('verified', 0)
 		->findAll();
-			
+
 		echo view('template/header', $data);
 		echo view('admin/unverified_properties');
 		echo view('template/footer');
+	}
+
+	public function InvestmentGroups(){
+
+		$model = new InvestmentGroupsModel();
+		$groups = $model->findAll();
+
+		$data['groups']= $groups;
+		$data["groupsCount"]  = $model->countAll(); 
+		echo view('template/header', $data);
+		echo view('admin/groups');
+		echo view('template/footer');
+	}
+
+	public function deleteGroup($id){
+		$model = new InvestmentGroupsModel();
+		
+		$user = $model->delete($id);
+	}
+
+	public function editGroups($Id){
+		$model = new InvestmentGroupsModel();
+		$user = $model->find($Id);
+		
 	}
 
 }

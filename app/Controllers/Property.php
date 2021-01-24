@@ -43,9 +43,21 @@ class Property extends BaseController
 
 		if ($this->request->getMethod() == 'post') {
 			//let's do the validation here
-			$fileNames = [];
-			$files = $this->request->getFileMultiple('photo');
-			echo($files);
+			$x =0;
+			$fileNames=["", "", ""];
+			$path = ('./uploads/'.session()->get('id'));
+			if($imagefile = $this->request->getFiles())
+			{
+				foreach($imagefile['photo'] as $img)
+				{
+					if ($img->isValid() && ! $img->hasMoved())
+					{
+						$fileNames[$x] = $newName = $img->getRandomName();
+						$img->move($path , $newName);
+						$x++;
+					}
+				}
+			}
 			
 			$newData = [
 
@@ -54,19 +66,20 @@ class Property extends BaseController
 				'location' => $this->request->getVar('location'),
 				'investmentReturnPercentage' => $this->request->getVar('investmentReturnPercentage'),
 				'shortDescription' => $this->request->getVar('shortDescription'),
-				'developmentTime' => $this->request->getVar('developmentTime'),	
 				'createdBy' => session()->get('id'),
-				'imagepath1' => "",
-				'imagepath2' => "",
-				'imagepath3' => "",
+				'imagepath1' => $fileNames[0],
+				'imagepath2' =>$fileNames[1],
+				'imagepath3' => $fileNames[2],
 				'investmentRequired' => $this->request->getVar('investmentRequired'),
 
 
 			];
+			
 			$model = new PropertyModel();
 			$model->insert($newData);
 			$session = session();
-			$session->setFlashdata('success', 'Successful Registration');
+			$session->setFlashdata('success', 'Property Added Successfully');
+			
 			return redirect()->to(base_url('Property/properties'));
 		}
 		echo view('template/header');
@@ -153,7 +166,6 @@ class Property extends BaseController
 			return redirect()->to('Property/properties');
 
 		}
-		echo("xxx");
 		echo view('template/header', $data);
 		echo view('data');
 		echo view('template/footer');

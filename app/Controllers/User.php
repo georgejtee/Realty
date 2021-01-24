@@ -67,8 +67,15 @@ class User extends BaseController
 		
 	}
 
-	function getFileName(){
-		$file = new \CodeIgniter\Files\File($path);
+	public function upload(){
+	if ($this->request->getMethod() == 'post') {
+			//let's do the validation here
+			
+		echo ("xxx");
+		}
+		echo view('template/header');
+		echo view('user/upload_documents');
+		echo view('template/footer');
 	}
 
 	function form(){
@@ -98,7 +105,7 @@ class User extends BaseController
 				'firstname' => 'required|min_length[3]|max_length[20]',
 				'lastname' => 'required|min_length[3]|max_length[20]',
 				'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[users.email]',
-				'password' => 'required|min_length[8]|max_length[255]',
+				'password' => 'required|min_length[8]|max_length[255]||alpha_numeric',
 				'password_confirm' => 'matches[password]',
 			];
 
@@ -108,6 +115,7 @@ class User extends BaseController
 				$model = new UserModel();
 
 				$newData = [
+					'id' => uniqid(date("Y.m.d"), true),
 					'firstname' => $this->request->getVar('firstname'),
 					'lastname' => $this->request->getVar('lastname'),
 					'email' => $this->request->getVar('email'),
@@ -159,7 +167,6 @@ class User extends BaseController
 
 				$this->setUserSession($user);
 				$session = session();
-				$session->setFlashdata('success', 'Successful Registration');
 				return redirect()->to(base_url('Property/index'));
 			}
 		}

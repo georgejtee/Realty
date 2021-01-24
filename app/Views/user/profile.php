@@ -9,6 +9,7 @@
             <?= session()->get('success') ?>
           </div>
         <?php endif; ?>
+
         <form class="" action="<?php echo base_url('User/profile');?>" method="post">
           <div class="row">
             <div class="col-12 col-sm-6">
@@ -53,6 +54,12 @@
               <input type="password" class="form-control" name="password_confirm" id="password_confirm" value="">
             </div>
           </div>
+
+          <div  class="dropzone col-12 col-sm-12">
+    <div class="fallback">
+      <input name="file" type="file" multiple />
+    </div>
+  </div>
           <?php if (isset($validation)): ?>
             <div class="col-12">
               <div class="alert alert-danger" role="alert">

@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="<?= base_url('assets/css/owl.carousel.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/slicknav.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/animate.min.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/basic.min.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/dropzone.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/magnific-popup.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/fontawesome-all.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/themify-icons.css') ?>">
@@ -32,6 +34,9 @@
   <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
   <!-- Jquery Mobile Menu -->
   <script src="<?= base_url('assets/js/jquery.slicknav.min.js') ?>"></script>
+
+  <script src="<?= base_url('assets/js/basic.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/dropzone.min.js') ?>"></script>
 
   <!-- Jquery Slick , Owl-Carousel Plugins -->
   <script src="<?= base_url('assets/js/owl.carousel.min.js') ?>"></script>
@@ -156,6 +161,7 @@
                 <ul class="submenu">
                   <li><a href="<?php echo(base_url('Admin/users')); ?>">Users</a></li>
                   <li><a href="<?php echo(base_url('Admin/properties')) ?>">Properties</a></li>
+                    <li><a href="<?php echo(base_url('Admin/InvestmentGroups')) ?>">Investment Groups</a></li>
                 </ul>
               </li>
             <?php endif; ?>
@@ -174,7 +180,12 @@
     <?php if (!session()->get('id')): ?>
     <div class="header-btn d-none d-lg-block f-right">
       <a href="<?php echo(base_url('User/login')); ?>" class="btn header-btn">Login</a>
+       <a href="<?php echo(base_url('User/register')); ?>">SignUp</a>
     </div>
+    <span class="header-btn d-none d-lg-block f-right">
+      
+    </span>
+   
   <?php endif; ?>
 </div>
 <!-- Mobile Menu -->
@@ -186,4 +197,4 @@
 </div>
 <!-- Header End -->
 </header>
-<main>
+<main class="main-page">

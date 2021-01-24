@@ -5,9 +5,8 @@
 
 		<div class="row">
 			<div class="col-md-4">
-				<img src="<?php echo(''); ?>" class="img-rounded img-responsive">
+				<img src="<?php echo(base_url('uploads/'.session()->get('id').'/'.$row['imagepath1'])); ?>" class="img img-rounded img-responsive">
 			</div>
-
 			<div class="col-md-8">
 				<h2>R <?php echo($row['investmentRequired']); ?> Package Price.</h2>
 				<h3>Development Project - <?php echo($row['propertyId']); ?></h3>
@@ -51,13 +50,11 @@
 				
 				<?php $url =  "Property/property/".$row['propertyId']?>
 
-				<div class="col-md-12"><button class="btn btn-sm btn-primary"><a href="<?php echo(base_url($url)) ; ?>">View More details</a></button></div>
+				<div class="col-md-12"><button class="btn btn-primary"><a href="<?php echo(base_url($url)) ; ?>">View More details</a></button></div>
 
 			</div>
 
 		</div >
-
-
 		<hr style="border-bottom: 1px solid #ccc;">
 	<?php endforeach;?>
 </div>
